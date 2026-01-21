@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Professional user registration form with modern design, complete accessibility and validation">
+    <meta name="author" content="Your Organization">
+    <meta name="keywords" content="registration, form, user account, modern design">
+    <meta name="theme-color" content="#667eea">
+    <title>User Registration Form | Professional Design</title>
+    
+    <style>
+        /* ==================== DESIGN TOKENS ==================== */
+        :root {
+            /* Primary Color Palette */
+            --primary-50: #f0f7ff;
+            --primary-100: #e0effe;
+            --primary-200: #bae6fd;
+            --primary-400: #60a5fa;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            
+            /* Neutral Colors */
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Semantic Colors */
+            --success-100: #dcfce7;
+            --success-600: #16a34a;
+            --danger-100: #fee2e2;
+            --danger-600: #dc2626;
+            --warning-100: #fef3c7;
+            --warning-600: #d97706;
+            --info-100: #cffafe;
+            --info-600: #0891b2;
+            
+            /* Spacing Scale */
+            --space-0: 0;
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Typography */
+            --font-family-base: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            --font-family-mono: 'Monaco', 'Courier New', monospace;
+            
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.75;
+            
+            /* Font Weights */
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+            
+            /* Transitions */
+            --duration-75: 75ms;
+            --duration-100: 100ms;
+            --duration-150: 150ms;
+            --duration-200: 200ms;
+            --duration-300: 300ms;
+            --duration-500: 500ms;
+            
+            --timing-ease-in: cubic-bezier(0.4, 0, 1, 1);
+            --timing-ease-out: cubic-bezier(0, 0, 0.2, 1);
+            --timing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==================== RESET & GLOBAL STYLES ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--gray-900);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-4);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ==================== LAYOUT CONTAINER ==================== */
+        main {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .page-wrapper {
+            display: flex;
+            gap: var(--space-8);
+            flex-wrap: wrap;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .reference-panel {
+            flex: 0 1 350px;
+            display: none;
+        }
+
+        .container {
+            background: var(--gray-50);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            padding: var(--space-12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideInUp 0.5s var(--timing-ease-out);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== HEADER ==================== */
+        .form-header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+            padding-bottom: var(--space-8);
+            border-bottom: 2px solid var(--primary-200);
+            position: relative;
+        }
+
+        .form-header::before {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-600) 0%, var(--primary-400) 100%);
+            border-radius: var(--radius-full);
+            margin: 0 auto var(--space-4);
+        }
+
+        h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--gray-900);
+            margin-bottom: var(--space-2);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            font-weight: var(--font-weight-normal);
+        }
+
+        /* ==================== FORM LAYOUT ==================== */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--gray-900);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px dashed var(--gray-300);
+            width: 100%;
+        }
+
+        .form-section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-200), transparent);
+            margin: var(--space-8) 0;
+            border-radius: var(--radius-full);
+        }
+
+        /* ==================== FORM GROUPS ==================== */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+        }
+
+        .form-row .form-group {
+            margin: 0;
+        }
+
+        .form-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ==================== LABELS & HELP TEXT ==================== */
+        label {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--gray-800);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .label-required::after {
+            content: '*';
+            color: var(--danger-600);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.1em;
+        }
+
+        .label-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-1) var(--space-2);
+            background: var(--primary-100);
+            color: var(--primary-700);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .help-text {
+            font-size: var(--font-size-xs);
+            color: var(--gray-600);
+            margin-top: var(--space-1);
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .help-text::before {
+            content: 'ℹ';
+            color: var(--info-600);
+            font-weight: var(--font-weight-bold);
+        }
+
+        /* ==================== INPUT FIELDS ==================== */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: var(--space-4) var(--space-4);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--gray-900);
+            transition: all var(--duration-200) var(--timing-ease-in-out);
+            appearance: none;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--gray-400);
+        }
+
+        input:hover,
+        select:hover,
+        textarea:hover {
+            border-color: var(--gray-300);
+            background: var(--gray-50);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            background: white;
+            box-shadow: 0 0 0 3px var(--primary-100), var(--shadow-md);
+        }
+
+        input:disabled,
+        select:disabled,
+        textarea:disabled {
+            background: var(--gray-100);
+            color: var(--gray-500);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        select {
+            padding-right: var(--space-10);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right var(--space-3) center;
+            background-size: 1.5em 1.5em;
+            cursor: pointer;
+        }
+
+        input.has-error,
+        select.has-error,
+        textarea.has-error {
+            border-color: var(--danger-600);
+            background-color: #fff5f5;
+            box-shadow: 0 0 0 3px var(--danger-100);
+        }
+
+        /* ==================== RADIO & CHECKBOX ==================== */
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--duration-150) var(--timing-ease-in-out);
+            border: 2px solid transparent;
+        }
+
+        .radio-option:hover,
+        .checkbox-option:hover {
+            background: var(--primary-50);
+            border-color: var(--primary-200);
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary-600);
+            flex-shrink: 0;
+        }
+
+        input[type="radio"]:focus,
+        input[type="checkbox"]:focus {
+            outline: 2px solid var(--primary-400);
+            outline-offset: 2px;
+        }
+
+        .radio-option label,
+        .checkbox-option label {
+            cursor: pointer;
+            font-weight: var(--font-weight-normal);
+            font-size: var(--font-size-sm);
+            margin: 0;
+        }
+
+        /* ==================== ALERTS & MESSAGES ==================== */
+        .info-box {
+            background: linear-gradient(135deg, var(--info-100) 0%, var(--primary-100) 100%);
+            border-left: 4px solid var(--info-600);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-6);
+            font-size: var(--font-size-sm);
+            color: var(--gray-800);
+        }
+
+        .error-message {
+            color: var(--danger-600);
+            font-size: var(--font-size-xs);
+            margin-top: var(--space-2);
+            display: none;
+            font-weight: var(--font-weight-semibold);
+            animation: slideDown 0.2s var(--timing-ease-out);
+        }
+
+        .error-message.show {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .error-message::before {
+            content: '✕';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            background: var(--danger-100);
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, var(--success-100) 0%, #e8f8f5 100%);
+            border-left: 4px solid var(--success-600);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-6);
+            display: none;
+            font-size: var(--font-size-sm);
+            color: var(--success-600);
+            font-weight: var(--font-weight-semibold);
+            animation: slideInDown 0.3s var(--timing-ease-out);
+        }
+
+        .success-message.show {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .success-message::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            background: var(--success-600);
+            color: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== TERMS SECTION ==================== */
+        .terms-section {
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            margin: var(--space-8) 0;
+        }
+
+        .terms-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-4);
+            color: var(--gray-900);
+        }
+
+        .terms-text {
+            background: white;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            max-height: 180px;
+            overflow-y: auto;
+            font-size: var(--font-size-xs);
+            line-height: var(--line-height-relaxed);
+            color: var(--gray-700);
+            margin-bottom: var(--space-6);
+        }
+
+        .terms-text::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .terms-text::-webkit-scrollbar-track {
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+        }
+
+        .terms-text::-webkit-scrollbar-thumb {
+            background: var(--primary-300);
+            border-radius: var(--radius-lg);
+        }
+
+        .terms-text::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-400);
+        }
+
+        /* ==================== HYPERLINKS ==================== */
+        a {
+            color: var(--primary-600);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            transition: all var(--duration-150) var(--timing-ease-in-out);
+            border-bottom: 1px solid transparent;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--primary-700);
+            border-bottom-color: var(--primary-600);
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--primary-400);
+            outline-offset: 4px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        button {
+            padding: var(--space-4) var(--space-6);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--duration-200) var(--timing-ease-in-out);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width var(--duration-300), height var(--duration-300);
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        button:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: var(--shadow-md);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        button[type="submit"] {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        button[type="submit"]:hover:not(:disabled) {
+            background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-700) 100%);
+        }
+
+        button[type="reset"] {
+            grid-column: 1 / -1;
+            background: var(--gray-600);
+            color: white;
+        }
+
+        button[type="reset"]:hover:not(:disabled) {
+            background: var(--gray-700);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .form-footer {
+            text-align: center;
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--gray-300);
+            font-size: var(--font-size-xs);
+            color: var(--gray-600);
+        }
+
+        .form-footer p {
+            margin: var(--space-3) 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            margin: var(--space-6) 0;
+        }
+
+        .footer-links a {
+            transition: all var(--duration-150) var(--timing-ease-in-out);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-700);
+            text-decoration: underline;
+        }
+
+        /* ==================== UTILITIES ==================== */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-muted {
+            color: var(--gray-600);
+        }
+
+        .text-small {
+            font-size: var(--font-size-xs);
+        }
+
+        mark {
+            background: linear-gradient(120deg, rgba(255, 193, 7, 0.3), rgba(255, 193, 7, 0.1));
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            color: inherit;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        strong {
+            font-weight: var(--font-weight-semibold);
+            color: var(--gray-900);
+        }
+
+        em {
+            font-style: italic;
+            color: var(--gray-700);
+        }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 1024px) {
+            .page-wrapper {
+                flex-direction: column;
+                gap: var(--space-6);
+            }
+
+            .reference-panel {
+                display: block;
+                flex-basis: 100%;
+                order: -1;
+            }
+
+            .container {
+                padding: var(--space-8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-3);
+            }
+
+            .container {
+                padding: var(--space-6);
+                border-radius: var(--radius-xl);
+            }
+
+            h1 {
+                font-size: var(--font-size-2xl);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+                gap: var(--space-3);
+            }
+
+            button[type="submit"],
+            button[type="reset"] {
+                grid-column: auto;
+            }
+
+            .footer-links {
+                gap: var(--space-2);
+            }
+
+            .form-section-divider {
+                margin: var(--space-6) 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                font-size: 14px;
+            }
+
+            body {
+                padding: var(--space-2);
+            }
+
+            .container {
+                padding: var(--space-4);
+                border-radius: var(--radius-lg);
+            }
+
+            h1 {
+                font-size: var(--font-size-xl);
+            }
+
+            .form-header {
+                margin-bottom: var(--space-6);
+                padding-bottom: var(--space-4);
+            }
+
+            legend {
+                font-size: var(--font-size-sm);
+                margin-bottom: var(--space-4);
+            }
+
+            .button-group {
+                margin-top: var(--space-6);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 1ms !important;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            }
+
+            .container {
+                background: var(--gray-900);
+                color: var(--gray-100);
+            }
+
+            h1 {
+                color: white;
+            }
+
+            label {
+                color: var(--gray-200);
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="date"],
+            input[type="password"],
+            select,
+            textarea {
+                background: var(--gray-800);
+                color: white;
+                border-color: var(--gray-700);
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                background: var(--gray-900);
+            }
+        }
+
+        /* ==================== ANIMATION & EFFECTS ==================== */
+        .link-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+
+        .link-group a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            transition: all var(--duration-200) var(--timing-ease-in-out);
+        }
+
+        .link-group a:hover {
+            background: var(--primary-50);
+            transform: translateX(2px);
+        }
+
+        details {
+            margin-bottom: var(--space-4);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            background: white;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: var(--font-weight-semibold);
+            color: var(--primary-600);
+            user-select: none;
+            padding: var(--space-2);
+            margin: calc(var(--space-2) * -1);
+            border-radius: var(--radius-md);
+            transition: all var(--duration-150) var(--timing-ease-in-out);
+        }
+
+        summary:hover {
+            background: var(--primary-50);
+            color: var(--primary-700);
+        }
+
+        summary:focus-visible {
+            outline: 2px solid var(--primary-400);
+            outline-offset: 2px;
+        }
+
+        pre {
+            background: var(--gray-900);
+            color: #f8f8f2;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+            font-size: var(--font-size-xs);
+            line-height: 1.4;
+            font-family: var(--font-family-mono);
+            margin: var(--space-4) 0 0 0;
+        }
+
+        code {
+            font-family: var(--font-family-mono);
+        }
+    </style>
+</head>
+<body>
+    <main class="page-wrapper">
+        <article class="container form-section">
+            <!-- Success Message -->
+            <section class="success-message" id="successMessage" role="alert" aria-live="polite">
+                Registration submitted successfully! Check your email for confirmation.
+            </section>
+
+            <!-- Header -->
+            <header class="form-header">
+                <h1>Create Account</h1>
+                <p class="subtitle">Join our community and get started today</p>
+            </header>
+
+            <!-- Info Box -->
+            <section class="info-box" role="complementary" aria-label="Form instructions">
+                <strong>📋 Instructions:</strong> Fields marked with <strong style="color: var(--danger-600);">*</strong> are required. 
+                Need help? Visit our <a href="#faq">FAQ</a> or <a href="mailto:support@example.com">contact us</a>.
+            </section>
+
+            <!-- Main Form -->
+            <form action="submit_registration.php" method="POST" id="registrationForm" novalidate aria-label="User registration form">
+                
+                <!-- Personal Information Section -->
+                <fieldset>
+                    <legend>👤 Personal Information</legend>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="label-required">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John" required maxlength="50" aria-required="true" aria-describedby="firstNameError">
+                            <small class="help-text">Your legal first name</small>
+                            <span class="error-message" id="firstNameError" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName" class="label-required">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Doe" required maxlength="50" aria-required="true" aria-describedby="lastNameError">
+                            <small class="help-text">Your legal last name</small>
+                            <span class="error-message" id="lastNameError" role="alert"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="label-required">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john.doe@example.com" required aria-required="true" aria-describedby="emailError">
+                            <small class="help-text">We'll send updates to this address</small>
+                            <span class="error-message" id="emailError" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="label-badge">Optional</span></label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" pattern="[0-9\-\+\s()]*" aria-describedby="phoneError">
+                            <small class="help-text">Format: (555) 123-4567</small>
+                            <span class="error-message" id="phoneError" role="alert"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob" class="label-required">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required aria-required="true" aria-describedby="dobError">
+                            <small class="help-text">Must be 18 years or older</small>
+                            <span class="error-message" id="dobError" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country" class="label-required">Country</label>
+                            <select id="country" name="country" required aria-required="true" aria-describedby="countryError">
+                                <option value="" disabled selected>Select your country</option>
+                                <option value="USA">🇺🇸 United States</option>
+                                <option value="India">🇮🇳 India</option>
+                                <option value="UK">🇬🇧 United Kingdom</option>
+                                <option value="Canada">🇨🇦 Canada</option>
+                                <option value="Australia">🇦🇺 Australia</option>
+                                <option value="Germany">🇩🇪 Germany</option>
+                            </select>
+                            <span class="error-message" id="countryError" role="alert"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender <span class="label-required">*</span></label>
+                        <div class="radio-group" role="radiogroup" aria-required="true">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="Male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="Female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="other" name="gender" value="Other">
+                                <label for="other">Prefer not to say</label>
+                            </div>
+                        </div>
+                        <span class="error-message" id="genderError" role="alert"></span>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label for="address" class="label-required">Full Address</label>
+                        <textarea id="address" name="address" placeholder="Street Address, City, State, ZIP Code" required aria-required="true" aria-describedby="addressError"></textarea>
+                        <small class="help-text">Include street, city, and postal code</small>
+                        <span class="error-message" id="addressError" role="alert"></span>
+                    </div>
+                </fieldset>
+
+                <!-- Security Section -->
+                <div class="form-section-divider"></div>
+                <fieldset>
+                    <legend>🔐 Security Settings</legend>
+
+                    <div class="form-group">
+                        <label for="password" class="label-required">Create Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a strong password" required minlength="8" aria-required="true" aria-describedby="passwordError">
+                        <small class="help-text">
+                            Requirements: At least 8 characters with <mark>uppercase</mark>, <mark>lowercase</mark>, and <mark>numbers</mark>
+                        </small>
+                        <span class="error-message" id="passwordError" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="label-required">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required minlength="8" aria-required="true" aria-describedby="confirmPasswordError">
+                        <small class="help-text">Passwords must match</small>
+                        <span class="error-message" id="confirmPasswordError" role="alert"></span>
+                    </div>
+                </fieldset>
+
+                <!-- Terms Section -->
+                <div class="form-section-divider"></div>
+                <section class="terms-section">
+                    <h3>📋 Terms & Conditions</h3>
+                    <div class="terms-text" role="region" aria-label="Terms and conditions content">
+                        <p>
+                            <strong>By registering,</strong> you agree to our <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>. 
+                            We process your data according to <mark>GDPR guidelines</mark>. You can <em>unsubscribe</em> from marketing emails anytime.
+                        </p>
+                        <p>
+                            For more information, see our <strong><a href="#data-policy">Data Protection Policy</a></strong>.
+                        </p>
+                    </div>
+
+                    <fieldset style="border: none; padding: 0; margin: 0;">
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="terms" name="terms" required aria-required="true">
+                                <label for="terms">I agree to the <a href="#terms">Terms and Conditions</a></label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="privacy" name="privacy" required aria-required="true">
+                                <label for="privacy">I have read the <a href="#privacy">Privacy Policy</a></label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                                <label for="newsletter">📧 Subscribe to newsletters for updates and offers</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <span class="error-message" id="termsError" role="alert"></span>
+                </section>
+
+                <!-- Quick Links -->
+                <nav class="link-group" aria-label="Quick help navigation">
+                    <a href="#faq">❓ FAQ</a>
+                    <a href="#help">🆘 Help Center</a>
+                    <a href="mailto:support@example.com">✉️ Contact Support</a>
+                    <a href="#privacy">🔒 Privacy</a>
+                </nav>
+
+                <!-- Form Actions -->
+                <div class="button-group">
+                    <button type="submit" id="submitBtn">✓ Create Account</button>
+                    <button type="reset" id="resetBtn">✕ Clear Form</button>
+                </div>
+            </form>
+
+            <!-- Footer -->
+            <footer class="form-footer" role="contentinfo">
+                <p>Already have an account? <a href="#login">Sign in here</a></p>
+                <div class="footer-links">
+                    <a href="#support">Support</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#careers">Careers</a>
+                </div>
+                <p class="text-small">
+                    <small>© 2026 Your Organization. All rights reserved. | 
+                    <a href="#terms">Terms</a> | 
+                    <a href="#privacy">Privacy</a> | 
+                    <a href="#cookies">Cookies</a></small>
+                </p>
+            </footer>
+        </article>
+    </main>
+
+    <script>
+        // ========== FORM STATE MANAGEMENT ==========
+        const formEl = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // Event Listeners
+        formEl.addEventListener('submit', handleSubmit);
+        resetBtn.addEventListener('click', handleReset);
+        document.getElementById('password').addEventListener('input', validatePasswordStrength);
+
+        // ========== FORM HANDLERS ==========
+        function handleSubmit(e) {
+            e.preventDefault();
+            clearErrors();
+
+            if (validateForm()) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ Processing...';
+
+                setTimeout(() => {
+                    showSuccess();
+                    formEl.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '✓ Create Account';
+                }, 1500);
+            }
+        }
+
+        function handleReset() {
+            clearErrors();
+            document.getElementById('successMessage').classList.remove('show');
+        }
+
+        // ========== VALIDATION ==========
+        function validateForm() {
+            let isValid = true;
+            const errors = {};
+
+            // Validate names
+            const firstName = getFieldValue('firstName').trim();
+            if (!firstName) errors.firstName = 'First name is required';
+            else if (firstName.length < 2) errors.firstName = 'At least 2 characters required';
+            else if (!/^[a-zA-Z\s\-']+$/.test(firstName)) errors.firstName = 'Only letters, spaces, hyphens allowed';
+
+            const lastName = getFieldValue('lastName').trim();
+            if (!lastName) errors.lastName = 'Last name is required';
+            else if (lastName.length < 2) errors.lastName = 'At least 2 characters required';
+            else if (!/^[a-zA-Z\s\-']+$/.test(lastName)) errors.lastName = 'Only letters, spaces, hyphens allowed';
+
+            // Validate email
+            const email = getFieldValue('email').trim();
+            if (!email) errors.email = 'Email is required';
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Invalid email format';
+
+            // Validate phone
+            const phone = getFieldValue('phone').trim();
+            if (phone && !/^[0-9\-\+\s()]*$/.test(phone)) errors.phone = 'Invalid phone format';
+
+            // Validate date
+            const dob = getFieldValue('dob');
+            if (!dob) errors.dob = 'Date of birth required';
+            else {
+                const age = calculateAge(new Date(dob));
+                if (age < 18) errors.dob = 'Must be 18 or older';
+                else if (age > 120) errors.dob = 'Invalid date of birth';
+            }
+
+            // Validate gender
+            if (!document.querySelector('input[name="gender"]:checked')) {
+                errors.gender = 'Please select a gender';
+            }
+
+            // Validate country
+            if (!getFieldValue('country')) errors.country = 'Please select a country';
+
+            // Validate address
+            const address = getFieldValue('address').trim();
+            if (!address) errors.address = 'Address is required';
+            else if (address.length < 10) errors.address = 'Address too short';
+
+            // Validate password
+            const password = getFieldValue('password');
+            if (!password) errors.password = 'Password required';
+            else if (password.length < 8) errors.password = 'At least 8 characters required';
+            else if (!hasPasswordStrength(password)) {
+                errors.password = 'Add uppercase, lowercase, and numbers';
+            }
+
+            // Validate confirm password
+            if (getFieldValue('confirmPassword') !== password) {
+                errors.confirmPassword = 'Passwords must match';
+            }
+
+            // Validate terms
+            if (!document.getElementById('terms').checked || !document.getElementById('privacy').checked) {
+                errors.terms = 'Accept terms and privacy policy';
+            }
+
+            // Display errors
+            Object.entries(errors).forEach(([field, msg]) => {
+                displayError(field, msg);
+                isValid = false;
+            });
+
+            return isValid;
+        }
+
+        // ========== HELPER FUNCTIONS ==========
+        function getFieldValue(id) {
+            const field = document.getElementById(id);
+            return field ? field.value : '';
+        }
+
+        function displayError(fieldName, message) {
+            const errorEl = document.getElementById(fieldName + 'Error');
+            const inputEl = document.getElementById(fieldName);
+
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+
+                if (inputEl && !inputEl.matches('input[type="radio"], input[type="checkbox"]')) {
+                    inputEl.classList.add('has-error');
+                    inputEl.addEventListener('focus', () => inputEl.classList.remove('has-error'), { once: true });
+                }
+            }
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.textContent = '';
+                el.classList.remove('show');
+            });
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                el.classList.remove('has-error');
+            });
+        }
+
+        function showSuccess() {
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            setTimeout(() => successMsg.classList.remove('show'), 5000);
+        }
+
+        function calculateAge(birthDate) {
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) age--;
+            return age;
+        }
+
+        function hasPasswordStrength(pwd) {
+            return /[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && /[0-9]/.test(pwd);
+        }
+
+        function validatePasswordStrength(e) {
+            const pwd = e.target.value;
+            if (pwd && !hasPasswordStrength(pwd)) {
+                e.target.style.borderColor = 'var(--warning-600)';
+            } else if (pwd) {
+                e.target.style.borderColor = 'var(--success-600)';
+            } else {
+                e.target.style.borderColor = 'var(--gray-200)';
+            }
+        }
+
+        console.log('Form initialized successfully');
+    </script>
+</body>
+</html>
