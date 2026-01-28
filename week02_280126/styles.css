@@ -1,0 +1,476 @@
+/* CSS Syntax Example */
+/* =========================
+   Global Reset & Base Styles
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS3 :root selector */
+:root {
+    --primary-color: #2c7be5;
+    --secondary-color: #f4f6f9;
+    --accent-color: #20c997;
+    --danger-color: #dc3545;
+    --text-color: #333;
+    --border-radius: 6px;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background: linear-gradient(to right, #eef2f3, #ffffff);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* =========================
+   Header & Navigation
+   ========================= */
+
+header {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+header img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Pseudo-element */
+header h1::after {
+    content: " ✨";
+}
+
+nav {
+    margin: 15px 0;
+    text-align: center;
+}
+
+nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 0 8px;
+    font-weight: 600;
+}
+
+/* Pseudo-class */
+nav a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* =========================
+   Main Layout
+   ========================= */
+
+main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+/* CSS3 attribute selector */
+section[id] {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 10px 0;
+    color: #555;
+}
+
+/* =========================
+   Form Styling
+   ========================= */
+
+form {
+    margin-top: 15px;
+}
+
+/* Fieldset & Legend */
+fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+}
+
+legend {
+    padding: 0 10px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+}
+
+/* CSS3 :focus pseudo-class */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #f0f8ff;
+}
+
+/* Required fields indicator */
+input:required {
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Radio & Checkbox alignment */
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* CSS3 nth-child selector */
+button:nth-child(1) {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+button[type="reset"] {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+button[type="button"] {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Pseudo-class */
+button:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+   Tables
+   ========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+/* CSS3 :nth-child */
+tbody tr:nth-child(even) {
+    background-color: var(--secondary-color);
+}
+
+thead th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* =========================
+   Lists
+   ========================= */
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Pseudo-element */
+li::marker {
+    color: var(--primary-color);
+}
+
+/* =========================
+   Multimedia
+   ========================= */
+
+video,
+audio {
+    margin-top: 10px;
+    border-radius: var(--border-radius);
+}
+
+/* =========================
+   Contact & Footer
+   ========================= */
+
+address {
+    font-style: normal;
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Pseudo-class */
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   Miscellaneous
+   ========================= */
+
+/* CSS3 :not selector */
+a:not(nav a) {
+    font-weight: 500;
+}
+
+/* Highlighted text */
+mark {
+    background-color: #fff3cd;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
